@@ -1,0 +1,44 @@
+body {
+    font-family: Helvetica Neue, Helvetica;
+    color: #282828;
+    width: 100%;
+    padding: 10px;
+    background-image: url("../assets/katie-smith-104748.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+div.content {
+
+    margin: auto;
+    width: 40%;
+
+}
+
+ul.header li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+}
+
+ul.header {
+    background-color: #111;
+    padding: 0;
+    left: 0px;
+    width: 23%;
+}
+
+ul.header li a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+}
+
+ul.header li a:hover {
+    background-color: #999999;
+}

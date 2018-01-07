@@ -1,0 +1,20 @@
+button.dish {
+    display: inline;
+    padding: 20px 20px;
+    background-color: #333333;
+    font-size: 20px;
+    color: #F7F3F0;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: auto;
+    margin-left: 30%;
+    margin-right: 30%
+}
+
+p {
+    font-size: 100px;
+    color: #282828;
+    margin-left: 30%;
+    margin-right: 30%
+}
+

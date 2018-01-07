@@ -1,0 +1,106 @@
+form {
+    width: 450px;
+    font-size: 16px;
+    background-color: rgba(41, 42, 36, 0.6);
+    padding: 30px 30px 15px 30px;
+}
+
+label {
+    font-size: 20px;
+    padding: 5px;
+    color: #FFFFFF;
+}
+
+h1 {
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #F7F3F0;
+
+}
+
+form input, select {
+    display: block;
+    width: 74%;
+    color: #282828;
+    font-size: 20px;
+    background-color: #999999;
+    padding: 5px 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #282828;
+
+}
+
+form input {
+    width: 70%;
+    background-color: #F7F3F0;
+}
+
+form button {
+    display: block;
+    width: 15%;
+    border-radius: 5px;
+    background-color: #282828;
+    color: #F7F3F0;
+    font-size: 20px;
+    height: 40px;
+    margin-top: 50px;
+    border: 1px solid #282828;
+
+}
+
+form button:hover {
+    background-color: #777;
+}
+
+form button:disabled {
+    background-color: #dbf99f;
+    color: #333;
+}
+
+form button.small {
+    display: inline;
+    width: auto;
+    padding: 0 20px;
+    background-color: #282828;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+form button.small:hover {
+    background-color: #999;
+}
+
+div.ingredient {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+}
+
+div.ingredient select {
+    width: 25%;
+}
+
+div.ingredient input:last-of-type {
+    width: 25%;
+}
+
+textarea {
+    display: block;
+    background-color: #F7F3F0;
+    width: 70%;
+    color: #282828;
+    font-size: 20px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #282828;
+}
+
+label:last-of-type {
+    display: block;
+
+    margin-top: 10px;
+}
+
