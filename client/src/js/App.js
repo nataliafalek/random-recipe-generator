@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import AddRecipe from './AddRecipe'
 import RandomDish from './RandomDish'
+import Home from './Home'
 import '../css/App.css'
 
 class App extends Component {
@@ -17,21 +18,27 @@ class App extends Component {
 
 
     render() {
-
         return (
-            <HashRouter>
-                <div>
-                    <ul className="header">
-                        <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/add">Add</NavLink></li>
-                        <li><NavLink to="/random">Random dish</NavLink></li>
-                    </ul>
-                    <div className="content">
-                        <Route path="/add" component={AddRecipe}/>
-                        <Route path="/random" component={RandomDish}/>
+            <div className="app">
+
+                <HashRouter>
+                    <div>
+                        <ul className="header">
+                            <li><NavLink to="/home">Home</NavLink></li>
+                            <li><NavLink to="/add">Add</NavLink></li>
+                            <li><NavLink to="/random">Random dish</NavLink></li>
+                            <li><NavLink to="/random">Login</NavLink></li>
+                            <li><NavLink to="/random">Sign up</NavLink></li>
+                        </ul>
+                        <div className="content">
+                            <Route path="/home" component={Home}/>
+                            <Route path="/add" component={AddRecipe}/>
+                            <Route path="/random" component={RandomDish}/>
+                        </div>
+                        <div className="footer">To moja super stopka</div>
                     </div>
-                </div>
-            </HashRouter>
+                </HashRouter>
+            </div>
         );
     }
 

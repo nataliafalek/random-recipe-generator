@@ -6,7 +6,6 @@ import java.util.List;
 @Entity
 public class Recipe {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long recipeId;

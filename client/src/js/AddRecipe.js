@@ -67,14 +67,14 @@ class Add extends Component {
         fetch('http://localhost:8080/read/recipe', {
             method: "POST",
             headers: {
-             'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
         })
             .then(json => {
-            console.log("dostalam z backendu", json)
-            this.setState(this.defaultState())
-        })
+                console.log("dostalam z backendu", json)
+                this.setState(this.defaultState())
+            })
         console.log(this.state)
         evt.preventDefault()
 
