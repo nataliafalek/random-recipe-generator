@@ -6,13 +6,17 @@ class Add extends Component {
 
     constructor() {
         super();
-        this.state = {
+        this.state = this.defaultState();
+    }
+
+    defaultState = () => {
+        return {
             country: '',
             dish: '',
             ingredients: [{item: '', quantity: 1, unit: ''}],
             method: '',
-        };
-    }
+        }
+    };
 
     handleCountryChange = (evt) => {
         this.setState({country: evt.target.value});
@@ -60,9 +64,22 @@ class Add extends Component {
 
     handleSubmit = (evt) => {
         // const { country, dish, ingredients } = this.state;
+        fetch('http://localhost:8080/read/recipe', {
+            method: "POST",
+            headers: {
+             'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+            .then(json => {
+            console.log("dostalam z backendu", json)
+            this.setState(this.defaultState())
+        })
         console.log(this.state)
         evt.preventDefault()
+
     };
+
 
     handleAddIngredients = () => {
         this.setState({ingredients: this.state.ingredients.concat([{item: '', quantity: 1, unit: ''}])})
@@ -91,6 +108,7 @@ class Add extends Component {
                         type="text"
                         value={this.state.dish}
                         onChange={this.handleDishChange}
+                        required
                     />
                     <label htmlFor="ingredient">Ingredient</label>
                     {this.state.ingredients.map((ingredient, idx) => (
@@ -98,11 +116,11 @@ class Add extends Component {
                             <input
                                 type="text"
                                 value={ingredient.item}
-                                onChange={(event) => this.handleItemChange(event, idx)}/>
+                                onChange={(event) => this.handleItemChange(event, idx)} required/>
                             <input
                                 type="number"
                                 value={ingredient.quantity}
-                                onChange={(event) => this.handleQuantityChange(event, idx)}/>
+                                onChange={(event) => this.handleQuantityChange(event, idx)} required/>
                             <select
                                 value={ingredient.unit}
                                 onChange={(event) => this.handleUnitChange(event, idx)}
@@ -125,6 +143,7 @@ class Add extends Component {
                         rows="4" cols="50"
                         value={this.state.method}
                         onChange={this.handleMethodChange}
+                        required
                     >Method</textarea>
 
                     <button>Send</button>
