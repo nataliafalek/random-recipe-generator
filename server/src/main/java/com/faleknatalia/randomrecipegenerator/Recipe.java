@@ -13,7 +13,7 @@ public class Recipe {
     private String country;
     private String dish;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Ingredient> ingredients;
     private String method;
 
@@ -27,15 +27,6 @@ public class Recipe {
         this.method = method;
     }
 
-    public static Recipe newRecipe(Recipe recipe) {
-        Recipe recipe1 = new Recipe();
-
-        for (Ingredient ingredient : recipe.getIngredients()) {
-            ingredient.setRecipe(recipe);
-        }
-
-        return recipe;
-    }
 
     public long getRecipeId() {
         return recipeId;

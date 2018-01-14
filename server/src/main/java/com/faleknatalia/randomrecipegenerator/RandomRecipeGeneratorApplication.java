@@ -36,9 +36,8 @@ public class RandomRecipeGeneratorApplication implements CommandLineRunner {
             add(new Ingredient("mąka", "kg", 1));
         }};
 
-        Recipe recipe1 = Recipe.newRecipe(new Recipe("Poland", "jabłecznik", listIngredients, "Pokroić i podgrzać"));
 
-        recipeRepository.save(recipe1);
+        recipeRepository.save(new Recipe("Poland", "jabłecznik", listIngredients, "Pokroić i podgrzać"));
 
     }
 

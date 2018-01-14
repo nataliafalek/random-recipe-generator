@@ -13,20 +13,6 @@ public class Ingredient {
     private String unit;
     private int quantity;
 
-    //TODO zamienić obiekt na obiektID
-    @ManyToOne
-    @JoinColumn(name = "RECIPE_ID")
-    private Recipe recipe;
-
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
     public Ingredient() {
     }
 

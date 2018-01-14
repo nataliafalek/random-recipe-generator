@@ -10,14 +10,14 @@ class RandomDish extends Component {
         };
     }
 
-    handleRandomDish = e => {
+    randomDish = e => {
         fetch('http://localhost:8080/random/recipe')
             .then(results => {
                 return results.json();
             })
             .then(data => {
                 console.log("pobrałam z backendu", data);
-                let recipe = (() => {
+                const recipe = (() => {
                     return (
                         <form>
                             <p>Dish name: {data.dish}</p>
@@ -52,7 +52,7 @@ class RandomDish extends Component {
                     <option value="Poland">Poland</option>
                     <option value="Germany">Germany</option>
                 </select>
-                <button type="button" onClick={this.handleRandomDish} className="dish">Random!</button>
+                <button type="button" onClick={this.randomDish} className="dish">Random!</button>
                 <div> {this.state.recipe}</div>
             </div>
         );

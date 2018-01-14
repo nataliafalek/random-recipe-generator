@@ -18,51 +18,51 @@ class Add extends Component {
         }
     };
 
-    handleCountryChange = (evt) => {
-        this.setState({country: evt.target.value});
+    changeCountry = (event) => {
+        this.setState({country: event.target.value});
     };
 
-    handleDishChange = (evt) => {
-        this.setState({dish: evt.target.value});
+    changeDish = (event) => {
+        this.setState({dish: event.target.value});
     };
 
-    handleItemChange = (evt, idx) => {
-        const newIngredients = this.state.ingredients.map((ingredient, sidx) => {
-            if (idx !== sidx) return ingredient;
+    changeItem = (event, idx) => {
+        const newIngredients = this.state.ingredients.map((ingredient, index) => {
+            if (idx !== index) return ingredient;
             return {
                 ...ingredient,
-                item: evt.target.value
+                item: event.target.value
             };
         });
         this.setState({ingredients: newIngredients});
     };
 
-    handleQuantityChange = (evt, idx) => {
-        const newIngredients = this.state.ingredients.map((ingredient, sidx) => {
-            if (idx !== sidx) return ingredient;
+    changeQuantity = (event, idx) => {
+        const newIngredients = this.state.ingredients.map((ingredient, index) => {
+            if (idx !== index) return ingredient;
             return {
                 ...ingredient,
-                quantity: evt.target.value
+                quantity: event.target.value
             };
         });
         this.setState({ingredients: newIngredients});
     };
-    handleUnitChange = (evt, idx) => {
-        const newIngredients = this.state.ingredients.map((ingredient, sidx) => {
-            if (idx !== sidx) return ingredient;
+    changeUnit = (event, idx) => {
+        const newIngredients = this.state.ingredients.map((ingredient, index) => {
+            if (idx !== index) return ingredient;
             return {
                 ...ingredient,
-                unit: evt.target.value
+                unit: event.target.value
             };
         });
         this.setState({ingredients: newIngredients});
     };
 
-    handleMethodChange = (evt) => {
-        this.setState({method: evt.target.value});
+    changeMethod = (event) => {
+        this.setState({method: event.target.value});
     };
 
-    handleSubmit = (evt) => {
+    addRecipe = (event) => {
         // const { country, dish, ingredients } = this.state;
         fetch('http://localhost:8080/read/recipe', {
             method: "POST",
@@ -76,17 +76,17 @@ class Add extends Component {
                 this.setState(this.defaultState())
             })
         console.log(this.state)
-        evt.preventDefault()
+        event.preventDefault()
 
     };
 
 
-    handleAddIngredients = () => {
+    addIngredients = () => {
         this.setState({ingredients: this.state.ingredients.concat([{item: '', quantity: 1, unit: ''}])})
     };
 
-    handleRemoveIngredients = (idx) => {
-        this.setState({ingredients: this.state.ingredients.filter((s, sidx) => idx !== sidx)})
+    removeIngredients = (idx) => {
+        this.setState({ingredients: this.state.ingredients.filter((s, index) => idx !== index)})
     };
 
     render() {
@@ -94,11 +94,11 @@ class Add extends Component {
         return (
             <div>
                 <h1>Add your own favourite dish! </h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.addRecipe}>
                     <label htmlFor="country" id="country">Country </label>
                     <select
                         value={this.state.country}
-                        onChange={this.handleCountryChange}>
+                        onChange={this.changeCountry}>
                         <option value="Poland">Poland</option>
                         <option value="Germany">Germany</option>
 
@@ -107,7 +107,7 @@ class Add extends Component {
                     <input
                         type="text"
                         value={this.state.dish}
-                        onChange={this.handleDishChange}
+                        onChange={this.changeDish}
                         required
                     />
                     <label htmlFor="ingredient">Ingredient</label>
@@ -116,33 +116,33 @@ class Add extends Component {
                             <input
                                 type="text"
                                 value={ingredient.item}
-                                onChange={(event) => this.handleItemChange(event, idx)} required/>
+                                onChange={(event) => this.changeItem(event, idx)} required/>
                             <input
                                 type="number"
                                 value={ingredient.quantity}
-                                onChange={(event) => this.handleQuantityChange(event, idx)} required/>
+                                onChange={(event) => this.changeQuantity(event, idx)} required/>
                             <select
                                 value={ingredient.unit}
-                                onChange={(event) => this.handleUnitChange(event, idx)}
+                                onChange={(event) => this.changeUnit(event, idx)}
                             >
                                 <option value="g">g</option>
                                 <option value="kg">kg</option>
                                 <option value="cup">cup</option>
                                 <option value="ml">ml</option>
                             </select>
-                            <button type="button" onClick={(event) => this.handleRemoveIngredients(idx)}
+                            <button type="button" onClick={(event) => this.removeIngredients(idx)}
                                     className="small">-
                             </button>
                         </div>
 
                     ))}
 
-                    <button type="button" onClick={this.handleAddIngredients} className="small">Add ingredient!</button>
+                    <button type="button" onClick={this.addIngredients} className="small">Add ingredient!</button>
                     <label htmlFor="method">Method</label>
                     <textarea
                         rows="4" cols="50"
                         value={this.state.method}
-                        onChange={this.handleMethodChange}
+                        onChange={this.changeMethod}
                         required
                     >Method</textarea>
 

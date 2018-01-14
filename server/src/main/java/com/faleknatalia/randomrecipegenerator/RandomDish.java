@@ -3,7 +3,7 @@ package com.faleknatalia.randomrecipegenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.lang.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Component
 public class RandomDish {
@@ -16,7 +16,7 @@ public class RandomDish {
 
     public Recipe findRandomDish() {
         long numberOfRecords = recipeRepository.count();
-        long randomNumber = (long) (Math.random() * numberOfRecords + 1);
+        long randomNumber = ThreadLocalRandom.current().nextLong(1,numberOfRecords + 1);
         return recipeRepository.getOne(randomNumber);
     }
 
