@@ -11,15 +11,16 @@ class Add extends Component {
 
     defaultState = () => {
         return {
-            country: '',
+            cuisine: null,
             dish: '',
-            ingredients: [{item: '', quantity: 1, unit: ''}],
+            ingredients: [{item: '', quantity: 1, unit: 'g'}],
             method: '',
+            staticListOfCuisine: (this.state || {}).staticListOfCuisine || [],
         }
     };
 
-    changeCountry = (event) => {
-        this.setState({country: event.target.value});
+    changeCuisine = (event) => {
+        this.setState({cuisine: event.target.value});
     };
 
     changeDish = (event) => {
@@ -89,6 +90,17 @@ class Add extends Component {
         this.setState({ingredients: this.state.ingredients.filter((s, index) => idx !== index)})
     };
 
+    componentDidMount() {
+        fetch('http://localhost:8080/cuisine')
+            .then(results => {
+                return results.json();
+            })
+            .then(data => {
+                console.log("pobrałam z backendu cuisine", data);
+                this.setState({staticListOfCuisine: data, cuisine: data[0].cuisine});
+            })
+    };
+
     render() {
 
         return (
@@ -97,12 +109,11 @@ class Add extends Component {
                 <form onSubmit={this.addRecipe}>
                     <label htmlFor="country" id="country">Country </label>
                     <select
-                        value={this.state.country}
-                        onChange={this.changeCountry}>
-                        <option value="Poland">Poland</option>
-                        <option value="Germany">Germany</option>
-
+                        value={this.state.cuisine}
+                        onChange={this.changeCuisine}>
+                        {this.state.staticListOfCuisine.map((a) => <option value={a.cuisine}>{a.cuisine}</option>)}
                     </select>
+
                     <label htmlFor="dish">Dish name</label>
                     <input
                         type="text"
@@ -129,6 +140,11 @@ class Add extends Component {
                                 <option value="kg">kg</option>
                                 <option value="cup">cup</option>
                                 <option value="ml">ml</option>
+                                <option value="none">none</option>
+                                <option value="pound">pound</option>
+                                <option value="piece">piece</option>
+                                <option value="tablespoon">tablespoon</option>
+
                             </select>
                             <button type="button" onClick={(event) => this.removeIngredients(idx)}
                                     className="small">-

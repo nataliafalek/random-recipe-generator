@@ -27,15 +27,15 @@ class App extends Component {
                             <li><NavLink to="/home">Home</NavLink></li>
                             <li><NavLink to="/add">Add</NavLink></li>
                             <li><NavLink to="/random">Random dish</NavLink></li>
-                            <li><NavLink to="/random">Login</NavLink></li>
-                            <li><NavLink to="/random">Sign up</NavLink></li>
+                            <li><NavLink to="/login">Login</NavLink></li>
+                            <li><NavLink to="/signup">Sign up</NavLink></li>
                         </ul>
                         <div className="content">
                             <Route path="/home" component={Home}/>
                             <Route path="/add" component={AddRecipe}/>
                             <Route path="/random" component={RandomDish}/>
                         </div>
-                        <div className="footer">To moja super stopka</div>
+                        {/*<div className="footer">To moja super stopka</div>*/}
                     </div>
                 </HashRouter>
             </div>

@@ -11,12 +11,12 @@ public class Ingredient {
 
     private String item;
     private String unit;
-    private int quantity;
+    private double quantity;
 
     public Ingredient() {
     }
 
-    public Ingredient(String item, String unit, int quantity) {
+    public Ingredient(String item, String unit, double quantity) {
         this.item = item;
         this.unit = unit;
         this.quantity = quantity;
@@ -38,7 +38,7 @@ public class Ingredient {
         return unit;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
