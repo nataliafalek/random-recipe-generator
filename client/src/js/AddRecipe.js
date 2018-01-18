@@ -11,16 +11,16 @@ class Add extends Component {
 
     defaultState = () => {
         return {
-            cuisine: null,
+            country: '',
             dish: '',
             ingredients: [{item: '', quantity: 1, unit: 'g'}],
             method: '',
-            staticListOfCuisine: (this.state || {}).staticListOfCuisine || [],
+            listOfCuisine: (this.state || {}).listOfCuisine || [],
         }
     };
 
     changeCuisine = (event) => {
-        this.setState({cuisine: event.target.value});
+        this.setState({country: event.target.value});
     };
 
     changeDish = (event) => {
@@ -64,7 +64,6 @@ class Add extends Component {
     };
 
     addRecipe = (event) => {
-        // const { country, dish, ingredients } = this.state;
         fetch('http://localhost:8080/read/recipe', {
             method: "POST",
             headers: {
@@ -73,10 +72,10 @@ class Add extends Component {
             body: JSON.stringify(this.state)
         })
             .then(json => {
-                console.log("dostalam z backendu", json)
+                console.log("dostalam z backendu", json);
                 this.setState(this.defaultState())
-            })
-        console.log(this.state)
+            });
+        console.log(this.state);
         event.preventDefault()
 
     };
@@ -97,7 +96,7 @@ class Add extends Component {
             })
             .then(data => {
                 console.log("pobrałam z backendu cuisine", data);
-                this.setState({staticListOfCuisine: data, cuisine: data[0].cuisine});
+                this.setState({listOfCuisine: data, country: data[0].cuisine});
             })
     };
 
@@ -107,11 +106,11 @@ class Add extends Component {
             <div>
                 <h1>Add your own favourite dish! </h1>
                 <form onSubmit={this.addRecipe}>
-                    <label htmlFor="country" id="country">Country </label>
+                    <label htmlFor="country" id="country">Cuisine </label>
                     <select
-                        value={this.state.cuisine}
+                        value={this.state.country}
                         onChange={this.changeCuisine}>
-                        {this.state.staticListOfCuisine.map((a) => <option value={a.cuisine}>{a.cuisine}</option>)}
+                        {this.state.listOfCuisine.map((a) => <option value={a.cuisine}>{a.cuisine}</option>)}
                     </select>
 
                     <label htmlFor="dish">Dish name</label>
@@ -169,6 +168,5 @@ class Add extends Component {
     }
 
 }
-
 
 export default Add;

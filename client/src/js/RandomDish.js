@@ -7,7 +7,7 @@ class RandomDish extends Component {
         super();
         this.state = {
             recipe: null,
-            listOfcuisine: (this.state || {}).cuisine || [],
+            listOfCuisine: (this.state || {}).cuisine || [],
             cuisine: null,
         };
     }
@@ -18,7 +18,6 @@ class RandomDish extends Component {
     };
 
 
-//TODO zmienic zeby zwracac html w render a nie w funkcji/componencie
     randomDish = event => {
         fetch('http://localhost:8080/random/recipe?cuisine=' + this.state.cuisine)
             .then(function (response) {
@@ -43,7 +42,7 @@ class RandomDish extends Component {
             })
             .then(data => {
                 console.log("pobrałam z backendu cuisine", data);
-                this.setState({listOfcuisine: data, cuisine: data[0].cuisine});
+                this.setState({listOfCuisine: data, cuisine: data[0].cuisine});
             })
     };
 
@@ -57,7 +56,7 @@ class RandomDish extends Component {
                 <label>Cuisine:</label>
                 <select value={this.state.cuisine}
                         onChange={this.changeCuisine}>
-                    {this.state.listOfcuisine.map((a) => <option value={a.cuisine}>{a.cuisine}</option>)}
+                    {this.state.listOfCuisine.map((a) => <option value={a.cuisine}>{a.cuisine}</option>)}
                 </select>
 
                 <button type="button" onClick={this.randomDish} className="dish">Random!</button>

@@ -6,13 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,18 +37,12 @@ public class RandomRecipeGeneratorApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
 
         Map<Long, Recipe> recipesMap;
-        String ingredientPath = "./server/src/main/resources/static/Ingredient_Data.csv";
-        String recipePath = "./server/src/main/resources/static/Recipe_Data.csv";
         List<Ingredient> listOfIngredient;
 
-        try (Stream<String> stream = Files.lines(Paths.get("./server/src/main/resources/static/Cuisine"))) {
-            stream.forEach(a -> cuisineRepository.save(new Cuisine(a)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadCusine("./server/src/main/resources/static/Cuisine");
+        listOfIngredient = readIngredientFromCsv("./server/src/main/resources/static/Ingredient_Data.csv");
+        recipesMap = readRecipeFromCsv("./server/src/main/resources/static/Recipe_Data.csv");
 
-        listOfIngredient = readIngredientFromCsv(ingredientPath);
-        recipesMap = readRecipeFromCsv(recipePath);
         changeIngredients(recipesMap, listOfIngredient, 1, 0, 5);
         changeIngredients(recipesMap, listOfIngredient, 2, 5, 11);
         changeIngredients(recipesMap, listOfIngredient, 3, 11, 16);
@@ -105,4 +97,11 @@ public class RandomRecipeGeneratorApplication implements CommandLineRunner {
         recipeRepository.save(recipesMap.get(recipeIdx));
     }
 
+    private void loadCusine(String path) {
+        try (Stream<String> stream = Files.lines(Paths.get(path))) {
+            stream.forEach(a -> cuisineRepository.save(new Cuisine(a)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

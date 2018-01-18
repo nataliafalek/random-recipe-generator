@@ -27,8 +27,6 @@ class App extends Component {
                             <li><NavLink to="/home">Home</NavLink></li>
                             <li><NavLink to="/add">Add</NavLink></li>
                             <li><NavLink to="/random">Random dish</NavLink></li>
-                            <li><NavLink to="/login">Login</NavLink></li>
-                            <li><NavLink to="/signup">Sign up</NavLink></li>
                         </ul>
                         <div className="content">
                             <Route path="/home" component={Home}/>
@@ -41,7 +39,6 @@ class App extends Component {
             </div>
         );
     }
-
 }
 
 

@@ -8,12 +8,10 @@ class Home extends Component {
     render() {
         return (
 
-            <h1>Tu będzie super wstęp </h1>
+            <h1>Tu będzie super wstęp</h1>
 
         )
     }
-
-
 }
 
 export default Home;

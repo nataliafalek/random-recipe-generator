@@ -1,12 +1,9 @@
 package com.faleknatalia.randomrecipegenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
@@ -17,7 +14,6 @@ public class RandomDish {
 
     @Autowired
     private RecipeRepository recipeRepository;
-
 
     public Recipe findRandomDishByCuisine(String cuisine) {
         List<Recipe> recipesByCuisine = recipeRepository.findAllByCountryEquals(cuisine);
